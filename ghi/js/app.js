@@ -12,6 +12,7 @@ function createCard(title, location, description, pictureUrl, starts, ends) {
              ${starts} - ${ends}
             </div>
        </div>
+      </div>
     </div>
     `;
   }
