@@ -8,11 +8,10 @@ window.addEventListener("DOMContentLoaded", async () => {
         const stateTag = document.getElementById('state')
         const data = await response.json()
         for (let state of data.states) {
-            const option = document.createElement('option')
-            option.value = state['abbreviation']
-            option.innerHTML = state['name']
-            stateTag.append(option)
-
+            let option = document.createElement('option');
+            option.value = state.abbreviation;
+            option.innerHTML = state.name;
+            stateTag.appendChild(option);
         }
 
     }
