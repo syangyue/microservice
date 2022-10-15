@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     if (response.ok) {
         const selectTag = document.getElementById('location');
         const data = await response.json();
-        console.log(data)
+    
         for (let location of data.locations) {
             let option = document.createElement('option');
             option.value = location.id;
