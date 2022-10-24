@@ -1,35 +1,40 @@
 import Nav from './Nav';
 import React from 'react';
+import AttendeesList from './AttendeesList';
+import LocationForm from './LocationForm';
+import ConferenceForm from './ConferenceForm';
+import AttendForm from './AttendForm';
+import PresentationForm from './PresentationForm';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainPage from './MainPage';
 
 function App(props) {
   if (props.attendees === undefined) {
     return null;
   }
   return (
-    <React.Fragment>
+    <BrowserRouter>
     <Nav />
-
     <div className="container">
-       <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Conference</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.attendees.map(attendee => {
-            return (
-              <tr key={attendee.href}>
-                <td>{ attendee.name }</td>
-                <td>{ attendee.conference }</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+    <Routes>
+      <Route index element={<MainPage />} />
+      <Route path='locations'>
+        <Route path='new' element={<LocationForm />} />
+      </Route>
+      <Route path='conferences'>
+        <Route path='new' element={<ConferenceForm />} />
+      </Route>
+      <Route path='presentations'>
+        <Route path='new' element={<PresentationForm />} />
+      </Route>
+      <Route path='attendees'>
+        <Route index element={<AttendeesList attendees={props.attendees} />}/>
+        <Route path='new' element={<AttendForm />} />
+      </Route>
+    </Routes>
     </div>
-    </React.Fragment> );
+  </BrowserRouter>
+    );
 
 }
 

@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 const selectTag = document.getElementById('conference');
 selectTag.addEventListener('change', (event) => {
-    const urlValue = event.target.vlaue;
+    const urlValue = event.target.value;
     console.log("Value: ", urlValue);
 
 window.addEventListener("submit", async (event) => {
@@ -32,7 +32,9 @@ window.addEventListener("submit", async (event) => {
     const formTag = document.getElementById('create-attendee-form');
     const formData = new FormData(formTag);
     const json = JSON.stringify(Object.fromEntries(formData));
-    const attendeeUrl = `http://localhost:8001/api/attendees/`;
+    console.log("JSON:", json)
+    const attendeeUrl = `http://localhost:8001${urlValue}attendees/`;
+    console.log(attendeeUrl)
     const fetchOptions = {
         method: "POST",
         body: json,
